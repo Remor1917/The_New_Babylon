@@ -136,5 +136,31 @@ namespace Babylon_V._2._1
         {
 
         }
+
+        private void UpdateTimeRemaining(int computerIndex, DateTime endTime)
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += (sender, e) =>
+            {
+                TimeSpan remainingTime = endTime - DateTime.Now;
+                _ostatok[computerIndex].Text = "Остаток времени: " + remainingTime.ToString(@"hh\:mm\:ss");
+
+                if (remainingTime <= TimeSpan.Zero)
+                {
+                    timer.Stop();
+                    
+    }
+
+                
+            };
+            timer.Start();
+
+}
+
+        private void UPed_Button(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoForward();
+        }
     }
 }
